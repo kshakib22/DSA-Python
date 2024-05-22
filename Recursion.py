@@ -56,7 +56,7 @@ print(maxRecursive(l1, len(l1)))
 
 # Mathematically, x^n = x*x^(n-1)
 # Add base case
-# NOTE this will fail a lot of test cases, especially with large powers. Better approach is Divide and Conquer
+# NOTE this will fail a lot of test cases, especially with large powers (stack overflow). Better approach is Divide and Conquer
 def power(x, n):
   '''
   Takes number x and raises it to power n 

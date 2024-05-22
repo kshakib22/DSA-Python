@@ -52,3 +52,22 @@ def maxRecursive(array, size):
 
 l1 = [1, 6, 2, 4, 3, 72, 23, 4, 3, 65, 12, 3]
 print(maxRecursive(l1, len(l1)))
+
+
+# Mathematically, x^n = x*x^(n-1)
+# Add base case
+# NOTE this will fail a lot of test cases, especially with large powers. Better approach is Divide and Conquer
+def power(x, n):
+  '''
+  Takes number x and raises it to power n 
+  '''
+  if n == 0:
+    return 1
+  elif n < 0:
+    return (1 / x) * power(x, n + 1)
+
+  return x * power(x, n - 1)
+
+
+x, y = 5, -1
+print("Value of {} to the power {} is {}".format(x, y, power(x, y)))

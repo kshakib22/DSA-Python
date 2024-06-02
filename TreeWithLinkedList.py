@@ -1,6 +1,7 @@
 # Import Visualiser class from module visualiser
 from visualiser.visualiser import Visualiser as vs
 
+
 class TreeNode:
 
   def __init__(self, data):
@@ -27,11 +28,24 @@ def inOrderTraversal(rootnode):
   inOrderTraversal(rootnode.left)
   print(rootnode.data)
   inOrderTraversal(rootnode.right)
-  
+
+
+def postOrderTraversal(rootnode):
+  if rootnode is None:
+    return
+  postOrderTraversal(rootnode.left)
+  postOrderTraversal(rootnode.right)
+  print(rootnode.data)
+
+
 newBT = TreeNode("Drinks")
 leftChild = TreeNode("Hot")
 rightChild = TreeNode("Cold")
 newBT.left = leftChild
 newBT.right = rightChild
 
+print("\n In Order would be: \n")
 inOrderTraversal(newBT)
+
+print("\n Post Order would be: \n")
+postOrderTraversal(newBT)

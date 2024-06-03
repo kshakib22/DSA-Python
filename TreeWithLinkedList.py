@@ -1,5 +1,4 @@
-# Import Visualiser class from module visualiser
-from visualiser.visualiser import Visualiser as vs
+from collections import deque
 
 
 class TreeNode:
@@ -38,14 +37,45 @@ def postOrderTraversal(rootnode):
   print(rootnode.data)
 
 
-newBT = TreeNode("Drinks")
-leftChild = TreeNode("Hot")
-rightChild = TreeNode("Cold")
-newBT.left = leftChild
-newBT.right = rightChild
+def levelOrderTraversal(rootnode):
+  if rootnode is None:
+    return
+  else:
+    queue = deque()
+    queue.append(rootnode)
+    while queue:
+      current = queue.popleft()
+      print(current.data)
+      if current.left:
+        queue.append(current.left)
+      if current.right:
+        queue.append(current.right)
+
+
+# Setting up an  example tree
+#      1
+#    /   \
+#   2     3
+#  / \   / \
+# 4   5 6   7
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.left = TreeNode(6)
+root.right.right = TreeNode(7)
+
+
+print("\n Pre Order would be: \n")
+preOrderTraversal(root)
 
 print("\n In Order would be: \n")
-inOrderTraversal(newBT)
+inOrderTraversal(root)
 
 print("\n Post Order would be: \n")
-postOrderTraversal(newBT)
+postOrderTraversal(root)
+
+print("\n Level Order would be: \n")
+levelOrderTraversal(root)

@@ -1,5 +1,10 @@
 from collections import deque
 
+# helper print for debug
+def print_deque(deque):
+  """Prints the elements of a deque."""
+  for element in deque:
+    print(element, end=" ")
 
 class TreeNode:
 
@@ -7,6 +12,9 @@ class TreeNode:
     self.data = data
     self.left = None
     self.right = None
+
+  def __str__(self) -> str:
+    return str(self.data)
 
 
 def preOrderTraversal(rootnode):
@@ -52,6 +60,25 @@ def levelOrderTraversal(rootnode):
         queue.append(current.right)
 
 
+def BFS(rootnode, val):
+  if rootnode is None:
+    return False
+  queue = deque()
+  queue.append(rootnode)
+  while queue:
+    current = queue.popleft()
+    if current.data == val:
+      print("Value found")
+      return True
+    if current.left:
+      queue.append(current.left)
+    if current.right:
+      queue.append(current.right)
+
+  print("Value not found")
+  return False
+
+
 # Setting up an  example tree
 #      1
 #    /   \
@@ -67,15 +94,16 @@ root.left.right = TreeNode(5)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
 
+# print("\n Pre Order would be: \n")
+# preOrderTraversal(root)
 
-print("\n Pre Order would be: \n")
-preOrderTraversal(root)
+# print("\n In Order would be: \n")
+# inOrderTraversal(root)
 
-print("\n In Order would be: \n")
-inOrderTraversal(root)
+# print("\n Post Order would be: \n")
+# postOrderTraversal(root)
 
-print("\n Post Order would be: \n")
-postOrderTraversal(root)
+# print("\n Level Order would be: \n")
+# levelOrderTraversal(root)
 
-print("\n Level Order would be: \n")
-levelOrderTraversal(root)
+BFS(root, 17)

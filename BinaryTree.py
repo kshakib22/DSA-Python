@@ -115,6 +115,12 @@ def getDeepestNode(rootnode):
   print(f"Deepest node value is {root.data}")
   return root
 
+def deleteEntireTree(rootnode):
+  if rootnode is None:
+    return 
+  rootnode.data = None
+  rootnode.left = None
+  rootnode.right = None
 
 # Setting up an  example tree
 #      1
@@ -131,7 +137,10 @@ root.left.right = TreeNode(5)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
 
-getDeepestNode(root)
+print("\n Level Order would be: \n")
+levelOrderTraversal(root)
+
+deleteEntireTree(root)
 
 # print("\n Pre Order would be: \n")
 # preOrderTraversal(root)

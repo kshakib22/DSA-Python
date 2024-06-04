@@ -1,10 +1,12 @@
 from collections import deque
 
+
 # helper print for debug
 def print_deque(deque):
   """Prints the elements of a deque."""
   for element in deque:
     print(element, end=" ")
+
 
 class TreeNode:
 
@@ -79,6 +81,25 @@ def BFS(rootnode, val):
   return False
 
 
+def insertNode(rootnode, val):
+  if rootnode is None:
+    rootnode.data = val
+  q = deque()
+  q.append(rootnode)
+  while q:
+    popped = q.popleft()
+    if popped.left:
+      q.append(popped.left)
+    else:
+      popped.left = TreeNode(val)
+      return True
+    if popped.right:
+      q.append(popped.right)
+    else:
+      popped.right = TreeNode(val)
+      return True
+
+
 # Setting up an  example tree
 #      1
 #    /   \
@@ -90,9 +111,11 @@ root = TreeNode(1)
 root.left = TreeNode(2)
 root.right = TreeNode(3)
 root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
+# root.left.right = TreeNode(5)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
+
+
 
 # print("\n Pre Order would be: \n")
 # preOrderTraversal(root)
@@ -103,7 +126,11 @@ root.right.right = TreeNode(7)
 # print("\n Post Order would be: \n")
 # postOrderTraversal(root)
 
-# print("\n Level Order would be: \n")
-# levelOrderTraversal(root)
+print("\n Level Order would be: \n")
+levelOrderTraversal(root)
 
-BFS(root, 17)
+# BFS(root, 17)
+insertNode(root, 5)
+
+print("\n Level Order would be: \n")
+levelOrderTraversal(root)

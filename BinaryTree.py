@@ -100,6 +100,22 @@ def insertNode(rootnode, val):
       return True
 
 
+def getDeepestNode(rootnode):
+  if rootnode is None:
+    return None
+  q = deque()
+  q.append(rootnode)
+  while q:
+    root = q.popleft()
+    if root.left:
+      q.append(root.left)
+
+    if root.right:
+      q.append(root.right)
+  print(f"Deepest node value is {root.data}")
+  return root
+
+
 # Setting up an  example tree
 #      1
 #    /   \
@@ -111,11 +127,11 @@ root = TreeNode(1)
 root.left = TreeNode(2)
 root.right = TreeNode(3)
 root.left.left = TreeNode(4)
-# root.left.right = TreeNode(5)
+root.left.right = TreeNode(5)
 root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
 
-
+getDeepestNode(root)
 
 # print("\n Pre Order would be: \n")
 # preOrderTraversal(root)
@@ -130,7 +146,7 @@ print("\n Level Order would be: \n")
 levelOrderTraversal(root)
 
 # BFS(root, 17)
-insertNode(root, 5)
 
-print("\n Level Order would be: \n")
-levelOrderTraversal(root)
+# insertNode(root, 5)
+# print("\n Level Order would be: \n")
+# levelOrderTraversal(root)

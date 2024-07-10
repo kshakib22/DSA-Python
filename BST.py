@@ -73,6 +73,27 @@ class BSTNode:
             else:
                 self.insertNode(root.rightChild, data)
 
+    def preOrderTraversal(self, root):
+        if root is None:
+            return "Empty"
+        print(root.data)
+        self.preOrderTraversal(root.leftChild)
+        self.preOrderTraversal(root.rightChild)
+
+    def inOrderTraversal(self, root):
+        if root is None:
+            return "Empty"
+        self.inOrderTraversal(root.leftChild)
+        print(root.data)
+        self.inOrderTraversal(root.rightChild)
+
+    def postOrderTraversal(self, root):
+        if root is None:
+            return "Empty"
+        self.postOrderTraversal(root.leftChild)
+        self.postOrderTraversal(root.rightChild)
+        print(root.data)
+
 
 bst = BSTNode(25)
 bst.insertNode(bst, 12)
@@ -80,4 +101,5 @@ bst.insertNode(bst, 30)
 bst.insertNode(bst, 26)
 bst.insertNode(bst, 13)
 
+print(bst.postOrderTraversal(bst))
 print(bst)

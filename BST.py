@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class BSTNode:
     # from AI to print the BST
     def __str__(self):
@@ -94,12 +97,44 @@ class BSTNode:
         self.postOrderTraversal(root.rightChild)
         print(root.data)
 
+    def levelOrderTraversal(self, root):
+        if root is None:
+            return "Empty"
+        track = deque()
+        track.append(root)
+        while track:
+            root = track.popleft()
+            print(root.data)
+            if root.leftChild:
+                track.append(root.leftChild)
+            if root.rightChild:
+                track.append(root.rightChild)
+
+    def search(self, root, find):
+        if root is None:
+            print(f"{find} not found")
+            return False
+        if root.data == find:
+            print(f"{find} found")
+            return True
+        elif find < root.data:
+            self.search(root.leftChild, find)
+        elif find > root.data:
+            self.search(root.rightChild, find)
+        else:
+            print(f"{find} not found")
+            return False
+
 
 bst = BSTNode(25)
 bst.insertNode(bst, 12)
 bst.insertNode(bst, 30)
 bst.insertNode(bst, 26)
 bst.insertNode(bst, 13)
+bst.insertNode(bst, 10)
+bst.insertNode(bst, 42)
 
-print(bst.postOrderTraversal(bst))
-print(bst)
+bst.search(bst, 26)
+# print(bst)
+# print("\n")
+# bst.levelOrderTraversal(bst)
